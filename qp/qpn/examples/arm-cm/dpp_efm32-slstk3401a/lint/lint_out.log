@@ -1,0 +1,153 @@
+
+--- Module:   C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c (C)
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 54 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_PRIMASK_DISABLE' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 54 59 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_PRIMASK_DISABLE'
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 55 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_PRIMASK_ENABLE' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 55 59 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_PRIMASK_ENABLE'
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 75 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_GET_BASEPRI' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 76 47 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_GET_BASEPRI'
+"C:\qp_lab\qpn\include\qpn.h" 93 23 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMActive_ctor'
+"C:\qp_lab\qpn\include\qpn.h" 96 23 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_ctor'
+"C:\qp_lab\qpn\include\qpn.h" 101 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMSM_INIT' 
+"C:\qp_lab\qpn\include\qpn.h" 101 44 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMSM_INIT'
+"C:\qp_lab\qpn\include\qpn.h" 104 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMSM_DISPATCH' 
+"C:\qp_lab\qpn\include\qpn.h" 104 48 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMSM_DISPATCH'
+"C:\qp_lab\qpn\include\qpn.h" 126 44 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_init'
+"C:\qp_lab\qpn\include\qpn.h" 129 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMsm_dispatch' 
+"C:\qp_lab\qpn\include\qpn.h" 129 48 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_dispatch'
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 26 56 Warning 694: The type of constant '4294967295' (precision 32) is dialect dependent
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 26 56 Note 960: Violates MISRA 2004 Required Rule 10.6, Unsigned integer literals require a 'U' suffix
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 26 75 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 26 76 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 107 21 Warning 527: Unreachable code at token 'status_' [MISRA 2004 Rule 14.1, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 135 21 Warning 527: Unreachable code at token 'status_' [MISRA 2004 Rule 14.1, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 171 21 Warning 527: Unreachable code at token 'status_' [MISRA 2004 Rule 14.1, required]
+
+--- Module:   C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c (C)
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 54 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_PRIMASK_DISABLE' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 54 59 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_PRIMASK_DISABLE'
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 55 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_PRIMASK_ENABLE' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 55 59 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_PRIMASK_ENABLE'
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 75 13 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QF_GET_BASEPRI' 
+"C:\qp_lab\qpn\ports\arm-cm\qk\gnu\qfn_port.h" 76 47 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QF_GET_BASEPRI'
+"C:\qp_lab\qpn\include\qpn.h" 93 23 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMActive_ctor'
+"C:\qp_lab\qpn\include\qpn.h" 96 23 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_ctor'
+"C:\qp_lab\qpn\include\qpn.h" 101 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMSM_INIT' 
+"C:\qp_lab\qpn\include\qpn.h" 101 44 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMSM_INIT'
+"C:\qp_lab\qpn\include\qpn.h" 104 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMSM_DISPATCH' 
+"C:\qp_lab\qpn\include\qpn.h" 104 48 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMSM_DISPATCH'
+"C:\qp_lab\qpn\include\qpn.h" 126 44 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_init'
+"C:\qp_lab\qpn\include\qpn.h" 129 9 Note 961: Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined: 'QMsm_dispatch' 
+"C:\qp_lab\qpn\include\qpn.h" 129 48 Note 960: Violates MISRA 2004 Required Rule 19.4, Disallowed definition for macro 'QMsm_dispatch'
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 26 56 Warning 694: The type of constant '4294967295' (precision 32) is dialect dependent
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 26 56 Note 960: Violates MISRA 2004 Required Rule 10.6, Unsigned integer literals require a 'U' suffix
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 26 75 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 26 76 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 94 21 Warning 527: Unreachable code at token 'status_' [MISRA 2004 Rule 14.1, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 120 86 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 134 39 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 144 82 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 161 39 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 178 82 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 188 82 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 198 21 Warning 527: Unreachable code at token 'status_' [MISRA 2004 Rule 14.1, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 236 47 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 248 39 Note 960: Violates MISRA 2004 Required Rule 10.1, Implicit conversion changes signedness
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 35 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'AO_Philo0' at location line 35, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 37 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'AO_Philo1' at location line 37, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 39 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'AO_Philo2' at location line 39, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 41 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'AO_Philo3' at location line 41, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 43 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'AO_Philo4' at location line 43, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+"C:\qp_lab\qpn\include\qfn.h" 378 1 Note 960: Violates MISRA 2004 Required Rule 8.7, could define variable at block scope: 'QF_active' at location line 378, file C:\qp_lab\qpn\include\qfn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c
+
+/// Start of Pass 2 ///
+
+--- Module:   C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c (C)
+
+--- Module:   C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c (C)
+
+--- Global Wrap-up
+
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_maxActive_' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 59 1 Info 759: header declaration for symbol 'Table_ctor(void)' defined at (line 59, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c" 59 1 Info 765: external 'Table_ctor(void)' (line 59, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\table.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h" 40 1 Warning 526: Symbol 'BSP_displayPaused(uint8_t)' (line 40, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_displayPaused' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h" 41 1 Warning 526: Symbol 'BSP_displayPhilStat(uint8_t, const char_t *)' (line 41, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_displayPhilStat' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_init' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h" 42 1 Warning 526: Symbol 'BSP_terminate(int16_t)' (line 42, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_terminate' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h" 44 1 Warning 526: Symbol 'BSP_randomSeed(uint32_t)' (line 44, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_randomSeed' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h" 45 1 Warning 526: Symbol 'BSP_random(void)' (line 45, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\bsp.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'BSP_random' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_init' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_onStartup' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QP_versionStr' 
+"C:\qp_lab\qpn\include\qfn.h" 378 1 Warning 526: Symbol 'QF_active' (line 378, file C:\qp_lab\qpn\include\qfn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_active' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_readySet_' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_run' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_mutexLock' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_mutexUnlock' 
+"C:\qp_lab\qpn\include\qfn.h" 313 1 Warning 526: Symbol 'QActive_armX(QActive *, uint_fast8_t, QTimeEvtCtr, QTimeEvtCtr)' (line 313, file C:\qp_lab\qpn\include\qfn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_armX' 
+"C:\qp_lab\qpn\include\qfn.h" 171 1 Warning 526: Symbol 'QActive_ctor(QActive *, QStateHandler)' (line 171, file C:\qp_lab\qpn\include\qfn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_ctor' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_postXISR_' 
+"C:\qp_lab\qpn\include\qfn.h" 322 1 Warning 526: Symbol 'QActive_disarmX(QActive *, uint_fast8_t)' (line 322, file C:\qp_lab\qpn\include\qfn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_disarmX' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_postX_' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_stop' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_childState_' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_ctor' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_dispatch_' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_init_' 
+"C:\qp_lab\qpn\include\qepn.h" 254 1 Warning 526: Symbol 'QHsm_top(const void *)' (line 254, file C:\qp_lab\qpn\include\qepn.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_top' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_tickXISR' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_onIdle' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_activate_' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_attr_' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 68 1 Info 759: header declaration for symbol 'Philo_ctor(void)' defined at (line 68, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 68 1 Info 765: external 'Philo_ctor(void)' (line 68, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\include\qassert.h" 229 1 Warning 526: Symbol 'Q_onAssert(const char_t *, int_t)' (line 229, file C:\qp_lab\qpn\include\qassert.h, module C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'Q_onAssert' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_sched_' 
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 45 1 Info 759: header declaration for symbol 'AO_Philo0' defined at (line 45, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 45 1 Info 765: external 'AO_Philo0' (line 45, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 48 1 Info 759: header declaration for symbol 'AO_Philo1' defined at (line 48, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 48 1 Info 765: external 'AO_Philo1' (line 48, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 51 1 Info 759: header declaration for symbol 'AO_Philo2' defined at (line 51, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 51 1 Info 765: external 'AO_Philo2' (line 51, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 54 1 Info 759: header declaration for symbol 'AO_Philo3' defined at (line 54, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 54 1 Info 765: external 'AO_Philo3' (line 54, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 57 1 Info 759: header declaration for symbol 'AO_Philo4' defined at (line 57, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be moved from header to module
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c" 57 1 Info 765: external 'AO_Philo4' (line 57, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\philo.c) could be made static [MISRA 2004 Rule 8.10, required]
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_init' 
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_invPow2Lkup' 
+"C:\qp_lab\qpn\include\qepn.h" 262 1 Info 769: global enumeration constant 'Q_RET_SUPER_SUB' (line 262, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 263 1 Info 769: global enumeration constant 'Q_RET_UNHANDLED' (line 263, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 267 1 Info 769: global enumeration constant 'Q_RET_IGNORED' (line 267, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 270 1 Info 769: global enumeration constant 'Q_RET_ENTRY' (line 270, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 271 1 Info 769: global enumeration constant 'Q_RET_EXIT' (line 271, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 274 1 Info 769: global enumeration constant 'Q_RET_NULL' (line 274, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 278 1 Info 769: global enumeration constant 'Q_RET_TRAN_INIT' (line 278, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 279 1 Info 769: global enumeration constant 'Q_RET_TRAN_HIST' (line 279, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 350 1 Info 769: global enumeration constant 'Q_INIT_SIG' (line 350, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 352 1 Info 769: global enumeration constant 'Q_TIMEOUT1_SIG' (line 352, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 353 1 Info 769: global enumeration constant 'Q_TIMEOUT2_SIG' (line 353, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 354 1 Info 769: global enumeration constant 'Q_TIMEOUT3_SIG' (line 354, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h" 28 1 Info 769: global enumeration constant 'DPPSignals::MAX_SIG' (line 28, file C:\qp_lab\qpn\examples\arm-cm\dpp_ek-tm4c123gxl\dpp.h) not referenced
+
+Count   Type    Number  Text
+
+11      Warning 526     Symbol '___' (___) not defined
+5       Warning 527     Unreachable code at token '___'
+2       Warning 694     The type of constant '___' (precision ___) is dialect dependent
+7       Info    759     header declaration for symbol '___' defined at (___) could be moved from header to module
+7       Info    765     external '___' (___) could be made static
+13      Info    769     global enumeration constant '___' (___) not referenced
+72      Note    960     Violates MISRA 2004 Required Rule ___, ___
+12      Note    961     Violates MISRA 2004 Advisory Rule ___, ___

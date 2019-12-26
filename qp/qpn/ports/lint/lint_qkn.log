@@ -1,0 +1,161 @@
+
+--- Module:   C:\qp_lab\qpn\src\qkn\qkn.c (C)
+"C:\qp_lab\qpn\src\qkn\qkn.c" 99 28 Note 961: Violates MISRA 2004 Advisory Rule 12.6, boolean expression required for operator: '?'; the -strong(B,...) option can help provide Boolean-by-enforcement
+"C:\qp_lab\qpn\src\qkn\qkn.c" 99 28 Info 717: do ... while(0);
+
+/// Start of Pass 2 ///
+
+--- Module:   C:\qp_lab\qpn\src\qkn\qkn.c (C)
+
+--- Global Wrap-up
+
+"C:\qp_lab\qpn\ports\lint\stdint.h" 32 1 Info 756: global typedef 'uint64_t' (line 32, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 40 1 Info 756: global typedef 'uint_fast32_t' (line 40, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 27 1 Info 756: global typedef 'int64_t' (line 27, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 406 1 Warning 526: Symbol 'QF_log2Lkup' (line 406, file C:\qp_lab\qpn\include\qfn.h) not defined
+"C:\qp_lab\qpn\include\qepn.h" 83 1 Info 756: global typedef 'float32_t' (line 83, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 90 1 Info 756: global typedef 'float64_t' (line 90, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 24 1 Info 756: global typedef 'int8_t' (line 24, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 395 1 Warning 526: Symbol 'QF_maxActive_' (line 395, file C:\qp_lab\qpn\include\qfn.h) not defined
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 145 1 Info 757: global declarator 'QK_init(void)' (line 145, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_init' 
+"C:\qp_lab\qpn\include\qfn.h" 365 1 Warning 526: Symbol 'QF_onStartup(void)' (line 365, file C:\qp_lab\qpn\include\qfn.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_onStartup' 
+"C:\qp_lab\qpn\include\qepn.h" 439 1 Info 757: global declarator 'QP_versionStr' (line 439, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QP_versionStr' 
+"C:\qp_lab\qpn\include\qfn.h" 391 1 Warning 526: Symbol 'QF_active' (line 391, file C:\qp_lab\qpn\include\qfn.h) not defined
+"C:\qp_lab\qpn\src\qkn\qkn.c" 121 1 Info 714: Symbol 'QF_run(void)' (line 121, file C:\qp_lab\qpn\src\qkn\qkn.c) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 398 1 Warning 526: Symbol 'QF_readySet_' (line 398, file C:\qp_lab\qpn\include\qfn.h) not defined
+"C:\qp_lab\qpn\include\qfn.h" 168 1 Info 756: global typedef 'QActiveVtable' (line 168, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 326 1 Info 757: global declarator 'QActive_armX(struct QActive *, uint_fast8_t, QTimeEvtCtr, QTimeEvtCtr)' (line 326, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_armX' 
+"C:\qp_lab\qpn\include\qfn.h" 171 1 Info 757: global declarator 'QActive_ctor(struct QActive *, QStateHandler)' (line 171, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_ctor' 
+"C:\qp_lab\qpn\include\qfn.h" 286 1 Info 757: global declarator 'QActive_postXISR_(struct QActive *, uint_fast8_t, enum_t, QParam)' (line 286, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_postXISR_' 
+"C:\qp_lab\qpn\include\qfn.h" 335 1 Info 757: global declarator 'QActive_disarmX(struct QActive *, uint_fast8_t)' (line 335, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_disarmX' 
+"C:\qp_lab\qpn\include\qfn.h" 282 1 Info 757: global declarator 'QActive_postX_(struct QActive *, uint_fast8_t, enum_t, QParam)' (line 282, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QActive_postX_' 
+"C:\qp_lab\qpn\include\qfn.h" 354 1 Info 757: global declarator 'QF_stop(void)' (line 354, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_stop' 
+"C:\qp_lab\qpn\include\qepn.h" 249 1 Info 757: global declarator 'QHsm_childState_(QHsm *, QStateHandler)' (line 249, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_childState_' 
+"C:\qp_lab\qpn\include\qepn.h" 228 1 Info 757: global declarator 'QHsm_ctor(QHsm *, QStateHandler)' (line 228, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_ctor' 
+"C:\qp_lab\qpn\include\qepn.h" 256 1 Info 757: global declarator 'QHsm_dispatch_(QHsm *)' (line 256, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_dispatch_' 
+"C:\qp_lab\qpn\include\qepn.h" 253 1 Info 757: global declarator 'QHsm_init_(QHsm *)' (line 253, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_init_' 
+"C:\qp_lab\qpn\include\qepn.h" 259 1 Info 757: global declarator 'QHsm_top(const void *)' (line 259, file C:\qp_lab\qpn\include\qepn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QHsm_top' 
+"C:\qp_lab\qpn\include\qfn.h" 322 1 Info 757: global declarator 'QF_tickXISR(uint_fast8_t)' (line 322, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_tickXISR' 
+"C:\qp_lab\qpn\include\qfn.h" 414 1 Info 757: global declarator 'QF_timerSetX_' (line 414, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_timerSetX_' 
+"C:\qp_lab\qpn\include\qkn.h" 108 1 Warning 526: Symbol 'QK_onContextSw(uint_fast8_t, uint_fast8_t)' (line 108, file C:\qp_lab\qpn\include\qkn.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_onContextSw' 
+"C:\qp_lab\qpn\include\qkn.h" 122 1 Warning 526: Symbol 'QK_onIdle(void)' (line 122, file C:\qp_lab\qpn\include\qkn.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QK_onIdle' 
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 150 1 Warning 526: Symbol 'int_disable(void)' (line 150, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'int_disable' 
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 151 1 Warning 526: Symbol 'int_enable(void)' (line 151, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'int_enable' 
+"C:\qp_lab\qpn\ports\lint\stdint.h" 37 1 Info 756: global typedef 'int_fast16_t' (line 37, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 39 1 Info 756: global typedef 'int_fast32_t' (line 39, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 35 1 Info 756: global typedef 'int_fast8_t' (line 35, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdint.h" 25 1 Info 756: global typedef 'int16_t' (line 25, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 253 1 Warning 526: Symbol 'Q_onAssert(const char_t *, int_t)' (line 253, file C:\qp_lab\qpn\include\qassert.h) not defined
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'Q_onAssert' 
+"C:\qp_lab\qpn\ports\lint\stdint.h" 26 1 Info 756: global typedef 'int32_t' (line 26, file C:\qp_lab\qpn\ports\lint\stdint.h) not referenced
+"C:\qp_lab\qpn\src\qkn\qkn.c" 161 1 Info 714: Symbol 'QK_schedLock(uint_fast8_t)' (line 161, file C:\qp_lab\qpn\src\qkn\qkn.c) not referenced
+"C:\qp_lab\qpn\src\qkn\qkn.c" 200 1 Info 714: Symbol 'QK_schedUnlock(QSchedStatus)' (line 200, file C:\qp_lab\qpn\src\qkn\qkn.c) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 344 1 Info 757: global declarator 'QF_init(uint_fast8_t)' (line 344, file C:\qp_lab\qpn\include\qfn.h) not referenced
+ Note 960: Violates MISRA 2004 Required Rule 8.9, undefined symbol: 'QF_init' 
+"C:\qp_lab\qpn\include\qfn.h" 420 1 Info 757: global declarator 'QF_invPow2Lkup' (line 420, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdbool.h" 17 1 Info 755: global macro 'true' (line 17, file C:\qp_lab\qpn\ports\lint\stdbool.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 57 1 Info 755: global macro 'QP_RELEASE' (line 57, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 348 1 Info 755: global macro 'Q_UNHANDLED' (line 348, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 286 1 Info 755: global macro 'Q_ENSURE' (line 286, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 297 1 Info 755: global macro 'Q_ENSURE_ID' (line 297, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 144 1 Info 755: global macro 'QK_INIT' (line 144, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 177 1 Info 755: global macro 'QF_NO_MARGIN' (line 177, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 127 1 Info 755: global macro 'QK_ISR_ENTRY' (line 127, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not referenced
+"C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h" 130 1 Info 755: global macro 'QK_ISR_EXIT' (line 130, file C:\qp_lab\qpn\ports\lint\qkn\qfn_port.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 333 1 Info 755: global macro 'Q_ASSERT_COMPILE' (line 333, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 331 1 Info 755: global macro 'Q_ASSERT_STATIC' (line 331, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdbool.h" 18 1 Info 755: global macro 'false' (line 18, file C:\qp_lab\qpn\ports\lint\stdbool.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 54 1 Info 755: global macro 'QP_VERSION_STR' (line 54, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 319 1 Info 755: global macro 'Q_TRAN' (line 319, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 328 1 Info 755: global macro 'Q_TRAN_HIST' (line 328, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 312 1 Info 755: global macro 'Q_STATE_CAST' (line 312, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 442 1 Info 755: global macro 'QF_ACTIVE_CAST' (line 442, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 442 1 Info 755: global macro 'QP_getVersion' (line 442, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 201 1 Info 755: global macro 'Q_ERROR' (line 201, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 217 1 Info 755: global macro 'Q_ERROR_ID' (line 217, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 307 1 Info 755: global macro 'Q_INVARIANT' (line 307, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 318 1 Info 755: global macro 'Q_INVARIANT_ID' (line 318, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 267 1 Info 755: global macro 'Q_REQUIRE' (line 267, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 337 1 Info 755: global macro 'Q_SUPER' (line 337, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 201 1 Info 755: global macro 'QACTIVE_POST' (line 201, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 250 1 Info 755: global macro 'QACTIVE_POST_ISR' (line 250, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 228 1 Info 755: global macro 'QACTIVE_POST_X' (line 228, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 279 1 Info 755: global macro 'QACTIVE_POST_X_ISR' (line 279, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 246 1 Info 755: global macro 'QHsm_childState' (line 246, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 236 1 Info 755: global macro 'QHsm_state' (line 236, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 342 1 Info 755: global macro 'Q_HANDLED' (line 342, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 110 1 Info 755: global macro 'Q_DEFINE_THIS_FILE' (line 110, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 300 1 Info 755: global macro 'Q_HSM_UPCAST' (line 300, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 176 1 Info 755: global macro 'Q_ALLEGE' (line 176, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 191 1 Info 755: global macro 'Q_ALLEGE_ID' (line 191, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qassert.h" 336 1 Info 755: global macro 'Q_DIM' (line 336, file C:\qp_lab\qpn\include\qassert.h) not referenced
+"C:\qp_lab\qpn\include\qkn.h" 82 1 Info 755: global macro 'QK_SCHEDULE_' (line 82, file C:\qp_lab\qpn\include\qkn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 371 1 Info 755: global macro 'Q_UINT2PTR_CAST' (line 371, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\ports\lint\stdbool.h" 22 1 Info 755: global macro '__bool_true_false_are_defined' (line 22, file C:\qp_lab\qpn\ports\lint\stdbool.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 264 1 Info 758: global enum '(untagged)' (line 264, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 352 1 Info 758: global enum '(untagged)' (line 352, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 185 1 Info 768: global struct member 'QHsm::state' (line 185, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 186 1 Info 768: global struct member 'QHsm::temp' (line 186, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 266 1 Info 769: global enumeration constant 'Q_RET_SUPER' (line 266, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 267 1 Info 769: global enumeration constant 'Q_RET_SUPER_SUB' (line 267, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 268 1 Info 769: global enumeration constant 'Q_RET_UNHANDLED' (line 268, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 271 1 Info 769: global enumeration constant 'Q_RET_HANDLED' (line 271, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 272 1 Info 769: global enumeration constant 'Q_RET_IGNORED' (line 272, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 275 1 Info 769: global enumeration constant 'Q_RET_ENTRY' (line 275, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 276 1 Info 769: global enumeration constant 'Q_RET_EXIT' (line 276, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 279 1 Info 769: global enumeration constant 'Q_RET_NULL' (line 279, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 282 1 Info 769: global enumeration constant 'Q_RET_TRAN' (line 282, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 283 1 Info 769: global enumeration constant 'Q_RET_TRAN_INIT' (line 283, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 284 1 Info 769: global enumeration constant 'Q_RET_TRAN_HIST' (line 284, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 353 1 Info 769: global enumeration constant 'Q_ENTRY_SIG' (line 353, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 354 1 Info 769: global enumeration constant 'Q_EXIT_SIG' (line 354, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 355 1 Info 769: global enumeration constant 'Q_INIT_SIG' (line 355, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 356 1 Info 769: global enumeration constant 'Q_TIMEOUT_SIG' (line 356, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 357 1 Info 769: global enumeration constant 'Q_TIMEOUT1_SIG' (line 357, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 358 1 Info 769: global enumeration constant 'Q_TIMEOUT2_SIG' (line 358, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 359 1 Info 769: global enumeration constant 'Q_TIMEOUT3_SIG' (line 359, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qepn.h" 360 1 Info 769: global enumeration constant 'Q_USER_SIG' (line 360, file C:\qp_lab\qpn\include\qepn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 85 1 Info 768: global struct member 'QTimer::nTicks' (line 85, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 87 1 Info 768: global struct member 'QTimer::interval' (line 87, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 125 1 Info 768: global struct member 'QActive::tickCtr' (line 125, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 132 1 Info 768: global struct member 'QActive::head' (line 132, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 146 1 Info 768: global struct member 'QActiveVtable::super' (line 146, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 154 1 Info 768: global struct member 'QActiveVtable::post' (line 154, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qfn.h" 161 1 Info 768: global struct member 'QActiveVtable::postISR' (line 161, file C:\qp_lab\qpn\include\qfn.h) not referenced
+"C:\qp_lab\qpn\include\qkn.h" 53 1 Info 768: global struct member 'QK_Attr::intNest' (line 53, file C:\qp_lab\qpn\include\qkn.h) not referenced
+ Note 900: Successful completion, 136 messages produced
+
+Count   Type    Number  Text
+
+10      Warning 526     Symbol '___' (___) not defined
+3       Info    714     Symbol '___' (___) not referenced
+1       Info    717     do ... while(0);
+39      Info    755     global macro '___' (___) not referenced
+12      Info    756     global typedef '___' (___) not referenced
+17      Info    757     global declarator '___' (___) not referenced
+2       Info    758     global ___ '___' (___) not referenced
+10      Info    768     global struct member '___' (___) not referenced
+19      Info    769     global enumeration constant '___' (___) not referenced
+1       Note    900     Successful completion, ___ messages produced
+22      Note    960     Violates MISRA 2004 Required Rule ___, ___
+1       Note    961     Violates MISRA 2004 Advisory Rule ___, ___
