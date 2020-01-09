@@ -29,15 +29,6 @@ def on_setup():
 def on_teardown():
     print("on_teardown")
 
-# tests...
-# test("tick")
-# current_obj(OBJ_TE, "timeEvt_kick")
-# tick()
-# expect("0000000001 TE0-Post Obj=timeEvt_kick,Sig=TIMER_KICK_SIG,AO=AO_HealthMonitor")
-# expect("0000000002 AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=TIMER_KICK_SIG,*")
-# expect("0000000003 AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=TIMER_KICK_SIG,*")
-# expect("0000000004 Trg-Done QS_RX_TICK")
-
 
 def TestTimerUpdateNoSubs():
     test("Post TIMER_UPDATE_SIG (no subscribers)")
@@ -125,8 +116,7 @@ def SubscribeUser():
     post("SUBSCRIBE_SIG", pack("<BB", 1, 0))
     expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=SUBSCRIBE_SIG,*")
     expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=SUBSCRIBE_SIG,*")
-    expect(
-        "@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=SUBSCRIBE_ACKNOWLEDGE_SIG,Pool=1,Ref=1>,*")
+    expect("@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=SUBSCRIBE_ACKNOWLEDGE_SIG,Pool=1,Ref=1>,*")
     expect("@timestamp Trg-Done QS_RX_EVENT")
 
 
@@ -145,8 +135,7 @@ def PostKickNoSubsc():
     expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=TIMER_KICK_SIG,*")
     expect("@timestamp Trg-Done QS_RX_EVENT")
 
-
-def SubscUpdateAndUnsubsc():
+def SubscAndUnsubsc():
     test("Post SUBSCRIBE_SIG to subscribe user with id=0 to AO_Member 1")
     post("SUBSCRIBE_SIG", pack("<BB", 1, 0))
     expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=SUBSCRIBE_SIG,*")
@@ -154,6 +143,23 @@ def SubscUpdateAndUnsubsc():
     expect(
         "@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=SUBSCRIBE_ACKNOWLEDGE_SIG,Pool=1,Ref=1>,*")
     expect("@timestamp Trg-Done QS_RX_EVENT")
+
+    test("Post UNSUBSCRIBE_SIG in order to unsubscribe user", NORESET)
+    post("UNSUBSCRIBE_SIG", pack("<BB", 1, 0))
+    expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=UNSUBSCRIBE_SIG,*")
+    expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=UNSUBSCRIBE_SIG,*")
+    expect("@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=UNSUBSCRIBE_ACKNOWLEDGE_SIG,*")
+    expect("@timestamp Trg-Done QS_RX_EVENT")
+
+def SubscAndUpdate():
+    test("Post SUBSCRIBE_SIG to subscribe user with id=0 to AO_Member 1")
+    post("SUBSCRIBE_SIG", pack("<BB", 1, 0))
+    expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=SUBSCRIBE_SIG,*")
+    expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=SUBSCRIBE_SIG,*")
+    expect(
+        "@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=SUBSCRIBE_ACKNOWLEDGE_SIG,Pool=1,Ref=1>,*")
+    expect("@timestamp Trg-Done QS_RX_EVENT")
+
     test("Post TIMER_UPDATE_SIG (one subscriber)", NORESET)
     post("TIMER_UPDATE_SIG")
     expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=TIMER_UPDATE_SIG,*")
@@ -169,12 +175,6 @@ def SubscUpdateAndUnsubsc():
     expect(
         "@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<0>,Evt<Sig=REQUEST_UPDATE_SIG,Pool=1,Ref=2>,Que<Free=0,Min=255>")
     expect("@timestamp Trg-Done QS_RX_EVENT")
-    test("Post UNSUBSCRIBE_SIG in order to unsubscribe user", NORESET)
-    post("UNSUBSCRIBE_SIG", pack("<BB", 1, 0))
-    expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=UNSUBSCRIBE_SIG,*")
-    expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=UNSUBSCRIBE_SIG,*")
-    expect("@timestamp AO-Post  Sdr=AO_HealthMonitor,Obj=AO_Member<1>,Evt<Sig=UNSUBSCRIBE_ACKNOWLEDGE_SIG,*")
-    expect("@timestamp Trg-Done QS_RX_EVENT")
 
 
 def PostAliveIndexOutOfBounds():
@@ -184,13 +184,6 @@ def PostAliveIndexOutOfBounds():
     expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=ALIVE_SIG,*")
     expect("@timestamp Trg-Done QS_RX_EVENT")
 
-
-#Test 1:
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#TestTimerUpdateNoSubs()
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 2:
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 def CallKickTimeEvt():
     test("CallKickTimeEvt")
     current_obj(OBJ_TE, "timeEvt_kick")
@@ -200,15 +193,6 @@ def CallKickTimeEvt():
     expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=TIMER_KICK_SIG,*")
     expect("@timestamp Trg-Done QS_RX_TICK")
 
-
-def CallTickTimeEvt():
-    test("CallTickTimeEvt")
-    current_obj(OBJ_TE, "timeEvt_tick")
-    tick()
-    expect("0000000001 TE0-Post Obj=timeEvt_tick,Sig=TIMEOUT_SIG,AO=AO_HealthMonitor")
-    expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=TIMEOUT_SIG,*")
-    expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=TIMEOUT_SIG,*")
-    expect("@timestamp Trg-Done QS_RX_TICK")
 
 
 def CallRequestUpdateTimeEvt():
@@ -221,54 +205,67 @@ def CallRequestUpdateTimeEvt():
     expect("@timestamp Trg-Done QS_RX_TICK")
 
 
+def PostAliveNoSubsc():
+    test("Post ALIVE_SIG (no subscribers)")
+    post("ALIVE_SIG")
+    expect("@timestamp AO-Post  Sdr=QS_RX,Obj=AO_HealthMonitor,Evt<Sig=ALIVE_SIG,*")
+    expect("@timestamp AO-GetL  Obj=AO_HealthMonitor,Evt<Sig=ALIVE_SIG,*")
+    expect("@timestamp Trg-Done QS_RX_EVENT")
+
+
+#Test 1: Tests posting of TIMER_UPDATE_SIG signal when there are no subscribers
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 3:
+TestTimerUpdateNoSubs()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeUser()
+#Test 2: Tests posting of ALIVE_SIG signal when there are no subscribers
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 4:
+PostAliveNoSubsc()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#UnsubscribeNonExistantUser()
+#Test 3: Tests the case of one subscriber to the system
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 5:
+SubscribeUser()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#PostKickNoSubsc()
+#Test 4: Check that unsubscribing non-existent user fails
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 6:
+UnsubscribeNonExistantUser()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscUpdateAndUnsubsc()
+#Test 5: Tests posting of TIMER_KICK_SIG signal when there are no subscribers
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 7:
+PostKickNoSubsc()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#PostAliveIndexOutOfBounds()
+#Test 6: Tests subscribing and then unsubscribing
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 8:
+SubscAndUnsubsc()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeSameUserTwice()
+#Test 7: Tests subscribing and then posting TIMER_UPDATE_SIG signal
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 9:
+SubscAndUpdate()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#UnsubscribeTwice()
+#Test 8: Tests sending ALIVE_SIG with index out of bounds
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 10:
+PostAliveIndexOutOfBounds()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#Test 8: Tests trying to subscribe same user twice
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+SubscribeSameUserTwice()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#Test 9: Tests trying to unsubscribe user twice
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+UnsubscribeTwice()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#Test 10: Tests trying to subscribe same user after unsubscribing
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeUserAfterUnsubs()
+SubscribeUserAfterUnsubs()
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#Test 11:
+#Test 11: Tests trying to subscribe same user on different Member aos
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeSameUserDiffMembers()
-#Test 12:
+SubscribeSameUserDiffMembers()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#CallKickTimeEvt()
-#Test 13:
+#Test 12: Tests calling kick time event
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#CallTickTimeEvt()
-#Test 14:
+CallKickTimeEvt()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#CallRequestUpdateTimeEvt()
-#Test 15:
+#Test 13: Tests calling request update time event
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeSameUserDiffMembers()
-#Test 16:
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#SubscribeSameUserDiffMembers()
+CallRequestUpdateTimeEvt()
+
