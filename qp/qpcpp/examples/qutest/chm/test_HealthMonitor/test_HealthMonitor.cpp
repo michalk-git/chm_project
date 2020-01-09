@@ -95,6 +95,7 @@ int main(int argc, char *argv[]) {
     for (int_t n = 0; n < N_MEMBER; ++n) {
         AO_Member[n]->start((uint_fast8_t)(n + 1U), // priority
                     (QP::QEvt const **)0, 0U, (void *)0, 0U);
+		AO_Member[n]->subscribe(REQUEST_UPDATE_SIG);			
     }
 
     // start the active object under test (AOUT)...
