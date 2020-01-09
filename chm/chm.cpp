@@ -1,9 +1,6 @@
 
 
-#include <iostream>
 #include "watchdog.h"
-#include <chrono>
-#include "chm.h"
 #include "SubscriptionHandler.h"
 
 
@@ -44,6 +41,8 @@ namespace Core_Health {
 #error qpcpp version 6.5.0 or higher required
 #endif
 
+static HealthMonitor l_HealthMonitor; // the single instance of the HealthMonitor active object
+
 namespace Core_Health {
 QP::QActive * const AO_HealthMonitor = &HealthMonitor::inst; // "opaque" pointer to HealthMonitor AO
 
@@ -55,7 +54,7 @@ namespace Core_Health {
 	HealthMonitor HealthMonitor::inst;
 
 	HealthMonitor::HealthMonitor(): QActive(&initial), watchdog_instance(singleton<WatchDog>::getInstance()),
-		timeEvt_request_update(this, UPDATE_SIG, 0U), timeEvt_kick(this, KICK_SIG, 0U), timeEvt_tick(this, TIMEOUT_SIG, 0U){
+		timeEvt_request_update(this, TIMER_UPDATE_SIG, 0U), timeEvt_kick(this, TIMER_KICK_SIG, 0U), timeEvt_tick(this, TIMEOUT_SIG, 0U) {
 
 		//start the watchdog
 		watchdog_instance.Start(CHMConfig_t::T_WATCHDOG_RESET_SEC);
@@ -69,11 +68,16 @@ namespace Core_Health {
 		timeEvt_kick.armX(ConvertSecondsToTicks((CHMConfig_t::T_UPDATE_WATCHDOG_SEC)) + KICK_SIGNAL_DELAY, ConvertSecondsToTicks((CHMConfig_t::T_UPDATE_WATCHDOG_SEC)) + KICK_SIGNAL_DELAY);
 		//arm time event that fires the signal UPDATE_SIG every T_AO_ALIVE_SEC seconds
 		timeEvt_request_update.armX(ConvertSecondsToTicks(CHMConfig_t::T_AO_ALIVE_SEC), ConvertSecondsToTicks(CHMConfig_t::T_AO_ALIVE_SEC));
-        //arm time event that fires the signal TICK_SIG every second
-		timeEvt_tick.armX(Core_Health::BSP::TICKS_PER_SEC, Core_Health::BSP::TICKS_PER_SEC);
 
-		QP::QEvt* START_evt = Q_NEW(QP::QEvt, START_TESTS_SIG);
-		QP::QF::PUBLISH(START_evt, this);
+		//arm time event that fires the signal TICK_SIG every second
+		timeEvt_tick.armX(Core_Health::BSP::TICKS_PER_SEC, Core_Health::BSP::TICKS_PER_SEC);
+		
+		QS_FUN_DICTIONARY(&active);
+		QS_OBJ_DICTIONARY(&l_HealthMonitor.timeEvt_request_update);
+		QS_OBJ_DICTIONARY(&l_HealthMonitor.timeEvt_kick);
+		QS_OBJ_DICTIONARY(&l_HealthMonitor.timeEvt_tick);
+		QP::QEvt* start_evt = Q_NEW(QP::QEvt, START_TESTS_SIG);
+		QP::QF::PUBLISH(start_evt, this);
 		return tran(&active);
 	}
 
@@ -81,16 +85,14 @@ namespace Core_Health {
 	Q_STATE_DEF(HealthMonitor, active) {
 
 		QP::QState status_;
-
 		switch (e->sig) {
 		case TIMEOUT_SIG: {
-			//publish signal TICK_SIG 
-			QP::QEvt* time_evt = Q_NEW(QP::QEvt, TICK_SIG);
-			QP::QF::PUBLISH(time_evt, this);
+			//publish signal TICK_SIG to all members
+			QP::QF::PUBLISH(Q_NEW(QP::QEvt, TICK_SIG), this);
 			status_ = Q_RET_HANDLED;
 			break;
 		}
-		case UPDATE_SIG: {
+		case TIMER_UPDATE_SIG: {
 			bool no_users_in_sys = (subscription_handler.GetMembersNum() == 0);                                                        
 			PRINT_LOG("update\n");
 			// if there are no subscribers, kick the watchdog
@@ -117,17 +119,19 @@ namespace Core_Health {
 		}
         
 		case SUBSCRIBE_SIG: {
+			// user_id is the id associated with the user who wishes to subscribe
 			int user_id = (int)(Q_EVT_CAST(SubscribeUserEvt)->id);
-			int AO_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);;
+			// ao_index is the index of the member active object who made the subscription request
+			int ao_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);
 			int new_sys_id = INVALID_ID;
 
-			// subscribe the user (if there is free space)
+			// subscribe the user if there is free space and the user is new to the system. If so, find the first empty cell available- 'new_sys_id'
 			new_sys_id = subscription_handler.SubscribeUser(user_id);
 			if (new_sys_id != INVALID_ID) {
-				//if we succeded in registering the new user we need notify the associated AO_Member
-				MemberEvt* member_evt = Q_NEW(MemberEvt, SUBSCRIBE_ACKNOLEDGE_SIG);
+				//if we succeded in registering the new user we need to notify the associated AO_Member
+				MemberEvt* member_evt = Q_NEW(MemberEvt, SUBSCRIBE_ACKNOWLEDGE_SIG);
 				member_evt->member_num = new_sys_id;
-				AO_Member[AO_index]->postFIFO(member_evt);
+				AO_Member[ao_index]->postFIFO(member_evt,this);
 			}
 			else PRINT_LOG("Subscribing didn't succeed\n");
 			
@@ -136,16 +140,17 @@ namespace Core_Health {
 		}
 
 		case UNSUBSCRIBE_SIG: {
-			
 			bool unsubscribed_successfully = false;
-			// find the system id (ie index in members array) of the member to unsubscribe
-			int AO_index = (Q_EVT_CAST(UnSubscribeUserEvt)->sender_id);
+			// get the index of the active object who made the unsubscribing request
+			int ao_index = (Q_EVT_CAST(UnSubscribeUserEvt)->sender_id);
+			// get the system id (ie index in members array) of the member to unsubscribe
 			int sys_id = (Q_EVT_CAST(UnSubscribeUserEvt)->member_num);
+			// unsubscribe the user if possible
 			unsubscribed_successfully = subscription_handler.UnSubscribeUser(sys_id);
 			if (unsubscribed_successfully) {
 				//if we succeded in unsubscribing we need notify the associated AO_Member
-				QP::QEvt* member_evt = Q_NEW(QP::QEvt, UNSUBSCRIBE_ACKNOLEDGE_SIG);
-				AO_Member[AO_index]->postFIFO(member_evt);
+				QP::QEvt* member_evt = Q_NEW(QP::QEvt, UNSUBSCRIBE_ACKNOWLEDGE_SIG);
+				AO_Member[ao_index]->postFIFO(member_evt,this);
 			}
 			else PRINT_LOG("Unsubscribing didn't succeed\n"); 
 			
@@ -153,7 +158,7 @@ namespace Core_Health {
 			break;
 		}
 
-		case KICK_SIG: {
+		case TIMER_KICK_SIG: {
 			PRINT_LOG("kick\n");
 			// kick the watchdog if all of the subscribers are alive
 			if (subscription_handler.AreAllMembersResponsive() == true) watchdog_instance.Kick();
@@ -168,7 +173,6 @@ namespace Core_Health {
 		case Q_EXIT_SIG: {
 			timeEvt_request_update.disarm();
 			timeEvt_kick.disarm();
-			timeEvt_tick.disarm();
 			status_ = Q_RET_HANDLED;
 			break;
 		}

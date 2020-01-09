@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
 	// initialize command array (specifying the commands to be executed during program run)
 	Command* subscription_array[N_MEMBER][COMMAND_NUM] = {
 		new Subscribe(0, 3,0) ,new Deactivate(9, 7,0),  new UnSubscribe(65,0),
-		new  Subscribe(5, 4,1),new  Command(0),new  Command(0),
-		new  Subscribe(5, 4,1) ,new Command(0),new  Command(0),
+		new UnSubscribe(4,1),new UnSubscribe(10,1),new  Command(0),
+		new   Command(0) ,new Command(0),new  Command(0),
 		new Command(0), new Command(0),new  Command(0),
 		new Command(0), new Command(0),new  Command(0),
 	

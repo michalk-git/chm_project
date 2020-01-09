@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClCompile Include="bsp.cpp" />
     <ClCompile Include="chm.cpp" />
-    <ClCompile Include="CoreDebug.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="member.cpp" />
     <ClCompile Include="SubscriptionHandler.cpp" />
@@ -160,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bsp.h" />
-    <ClInclude Include="chm.h" />
     <ClInclude Include="CoreDebug.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="SubscriptionHandler.h" />

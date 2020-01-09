@@ -22,6 +22,7 @@ private:
 	// used for testing 
 	SubscriptionCmdOrWait cmd_handler;
 
+
 	int num_deactivated_cycles;
 public:
 	Member();
@@ -73,7 +74,7 @@ namespace Core_Health {
 	Member Member::inst[N_MEMBER];
 	//${AOs::Member::Member} .......................................................
 	Member::Member()
-		: QActive(&initial), num_deactivated_cycles(0) {};
+		: QActive(&initial), num_deactivated_cycles(0),system_id(-1) {};
 		
 	
 
@@ -85,6 +86,9 @@ namespace Core_Health {
 		if (e->sig == INIT_SIG) {
 			cmd_handler = (Q_EVT_CAST(InitializationEvt)->cmd_or_wait);
 		}
+
+
+		// subscribe to 'START_TESTS_SIG' 
 		subscribe(START_TESTS_SIG);
 		return tran(&active);
 	}
@@ -96,6 +100,7 @@ namespace Core_Health {
 		QP::QState status_;
 		switch (e->sig) {
 		case START_TESTS_SIG: {
+			// when the member AO receives a 'START_TESTS_SIG' , it will prompt a subscription to the signal TICK_SIG
 			subscribe(TICK_SIG);
 			status_ = Q_RET_HANDLED;
 			break;
@@ -135,7 +140,7 @@ namespace Core_Health {
 		}
 
         
-		case SUBSCRIBE_ACKNOLEDGE_SIG: {
+		case SUBSCRIBE_ACKNOWLEDGE_SIG: {
 			//all users who wish to subscribe to health monitor system will subscribe to the REQUEST_UPDATE_SIG signal
 			subscribe(REQUEST_UPDATE_SIG);
 			system_id = (Q_EVT_CAST(MemberEvt)->member_num);
@@ -143,10 +148,10 @@ namespace Core_Health {
 			status_ = Q_RET_HANDLED;
 			break;
 		}
-		case UNSUBSCRIBE_ACKNOLEDGE_SIG: {
+		case UNSUBSCRIBE_ACKNOWLEDGE_SIG: {
 			//users who wish to unsubscribe will stop receiving REQUEST_UPDATE_SIG signal
 			 unsubscribe(REQUEST_UPDATE_SIG);
-			 PRINT_LOG("member %d has has unsubscribed\n", system_id);
+			 PRINT_LOG("member %d has unsubscribed\n", system_id);
 			 system_id = -1;
 			 num_deactivated_cycles = 0;
 			 status_ = Q_RET_HANDLED;
@@ -155,7 +160,6 @@ namespace Core_Health {
 		//used for testing purposes
 		case DEACTIVATE_SIG: {
 			num_deactivated_cycles = (Q_EVT_CAST(DeactivationEvt)->period_num);
-			PRINT_LOG("in decativate of member %d", system_id);
 			status_ = Q_RET_HANDLED;
 			break;
 		}

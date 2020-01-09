@@ -90,19 +90,21 @@ namespace QP {
 	};
 
 	
-	/*
+
+
+
 	void SubscribeHandler(int user_id) {
 
 		//create an event with the new user's id and post it to the CHM system
-		RegisterNewUserEvt* user_evt = Q_NEW(RegisterNewUserEvt, SUBSCRIBE_SIG);
+		SubscribeUserEvt* user_evt = Q_NEW(SubscribeUserEvt, SUBSCRIBE_SIG);
 		user_evt->id = user_id;
 		AO_HealthMonitor->postFIFO(user_evt);
 		return;
 	}
 
 	void UnSubscribeHandler(int index) {
-		MemberEvt* user_evt = Q_NEW(MemberEvt, UNSUBSCRIBE_SIG);
-		user_evt->memberNum = index;
+		UnSubscribeUserEvt* user_evt = Q_NEW(UnSubscribeUserEvt, UNSUBSCRIBE_SIG);
+		user_evt->member_num = index;
 		AO_HealthMonitor->postFIFO(user_evt);
 		 return;
 	}
@@ -112,7 +114,7 @@ namespace QP {
 	void DeactivateHandler(int index, int misses) {
 		// create new event to notify the appropriate member and post it
 		DeactivationEvt* evt = Q_NEW(DeactivationEvt, DEACTIVATE_SIG);
-		evt->memberNum = index;
+		evt->member_num = index;
 		evt->period_num = misses;
 		AO_Member[index]->postFIFO(evt);
 
@@ -150,7 +152,7 @@ namespace QP {
 		}
 		return false;
 	}
-	*/
+
 	//............................................................................
 		void QF_onClockTick(void) {
 
@@ -165,7 +167,7 @@ namespace QP {
 			QF::TICK_X(0U, &Core_Health::l_clock_tick); // process time events at rate 0
 			QS_RX_INPUT(); // handle the QS-RX input
 			QS_OUTPUT();   // handle the QS output
-			/*
+			
 			//check if we're in the middle of a request (ie we need to receive more input to complete request)
 			if (request != IDLE) {
 				//First get the user's input on character at a time
@@ -235,7 +237,7 @@ namespace QP {
 				}
 
 			}
-			*/
+		
 		}
 
 	//----------------------------------------------------------------------------

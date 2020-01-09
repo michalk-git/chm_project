@@ -33,20 +33,11 @@
     <ClCompile Include="watchdog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreDebug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bsp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bsp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="chm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="singleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,10 +50,13 @@
     <ClInclude Include="watchdog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="CoreDebug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreDebug.h">
+    <ClInclude Include="bsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

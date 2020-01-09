@@ -10,11 +10,11 @@
 
 
 #ifndef _DEBUG 
-#define PRINT_LOG(x) 
+#define PRINT_LOG(x,...) 
 #else
 #define PRINT_LOG(x,...) do {singleton<CoreDebug>::getInstance().CorePrintf(x,##__VA_ARGS__);} while (0)
 #endif
-//hhhhh
+
 
 namespace Core_Health {
 	QP::QTimeEvtCtr ConvertSecondsToTicks(unsigned int seconds);
@@ -33,20 +33,21 @@ enum Core_HealthSignals {
 	START_TESTS_SIG,
     MAX_PUB_SIG,                  // the last published signal
 	 
-	MEMBER_SUBSCRIBE_SIG,        //member subscribe signal
-	MEMBER_UNSUBSCRIBE_SIG,      
+	MEMBER_SUBSCRIBE_SIG,
+	MEMBER_UNSUBSCRIBE_SIG,
 
-    INIT_SIG,                     //initialization signal
+    INIT_SIG,         
 	DEACTIVATE_SIG,               //signal to an Member AO to elicit malfunctioning behaviour (no AlIVE signals for a specified amount of periods)
 	SUBSCRIBE_SIG,                //each member can subscribe by SUBSCRIBE_SIG
 	UNSUBSCRIBE_SIG,              //each member can unsubscribe by UNSUBSCRIBE_SIG
-	SUBSCRIBE_ACKNOLEDGE_SIG,         //each member can subscribe by SUBSCRIBE_SIG
-	UNSUBSCRIBE_ACKNOLEDGE_SIG,       //each member can unsubscribe by UNSUBSCRIBE_SIG
-	KICK_SIG,                     //AO_CHM sends itself a KICK_SIG to signal the time to (potentially) kick the watchdog 
-	UPDATE_SIG,                   // AO_CHM sends itself an UPDATE_SIG to signal the time to request an update from the subscribed members
+	SUBSCRIBE_ACKNOWLEDGE_SIG,         //each member can subscribe by SUBSCRIBE_SIG
+	UNSUBSCRIBE_ACKNOWLEDGE_SIG,       //each member can unsubscribe by UNSUBSCRIBE_SIG
+	TIMER_KICK_SIG,                     //AO_CHM sends itself a KICK_SIG to signal the time to (potentially) kick the watchdog 
+	TIMER_UPDATE_SIG,                   // AO_CHM sends itself an UPDATE_SIG to signal the time to request an update from the subscribed members
 	ALIVE_SIG,                    //each subscribed member that receives an UPDATE_SIG posts an ALIVE_SIG to AO_CHM in response
     MAX_SIG                       // the last signal
 };
+
 
 
 

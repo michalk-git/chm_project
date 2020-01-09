@@ -29,9 +29,10 @@ int SubscriptionHandler::FindFreeSpace(int id, int* return_index)const {
 
 int SubscriptionHandler::SubscribeUser(int user_id) {
 	int empty_cell_index = SYSTEM_FULL;
-	int status = FindFreeSpace(user_id, &empty_cell_index);
-	if (status == USER_IN_SYS) PRINT_LOG("User %d is already in the system\n", user_id);
-	else if(status == SYSTEM_FULL) PRINT_LOG("System full\n");  
+	// Find a free cell in members array if possible (if not possible there are two cases: 1. if the id is already in the system returns USER_IN_SYS.2.if the array is full returns SYSTEM_FULL)
+	int registration_status = FindFreeSpace(user_id, &empty_cell_index);
+	if (registration_status == USER_IN_SYS) PRINT_LOG("User %d is already in the system\n", user_id);
+	else if(registration_status == SYSTEM_FULL) PRINT_LOG("System full\n");
 	else {	
 		//if we found an index in the members array not associated with another user, register the new subscriber and increase members count
 		members[empty_cell_index].id = user_id;
@@ -70,7 +71,7 @@ void SubscriptionHandler::LogUnResponsiveUsersAndReset() {
 	}
 }
 
-bool SubscriptionHandler::AreAllMembersResponsive() {
+bool SubscriptionHandler::AreAllMembersResponsive()const {
 	bool subscriber_is_unresponsive = false;
 	// For each member check if there has been an ALIVE signal in the current cycle
 	for (int i = 0; i < N_MEMBER; ++i) {

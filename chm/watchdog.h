@@ -2,7 +2,7 @@
 #ifndef WD_CPP_
 #define WD_CPP_
 
-
+#include <windows.h>
 #include <thread>
 #include "system.h"
 #include "singleton.h"
