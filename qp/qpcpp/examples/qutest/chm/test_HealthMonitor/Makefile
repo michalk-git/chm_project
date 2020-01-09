@@ -57,11 +57,12 @@ PROJECT := test_HealthMonitor
 
 # list of all source directories used by this project
 VPATH := . \
-	../src
+         ../../../../../../chm
+	
 
 # list of all include directories needed by this project
 INCLUDES := -I. \
-	-I../src
+	-I../../../../../../chm
 
 # location of the QP/C++ framework (if not provided in an env. variable)
 ifeq ($(QPCPP),)
@@ -81,11 +82,12 @@ endif
 C_SRCS :=
 
 # C++ source files...
-CPP_SRCS := test_HealthMonitor.cpp\
-            chm.cpp\
+# C++ source files...
+CPP_SRCS := test_HealthMonitor.cpp \
+            chm.cpp \
 			bsp.cpp \
-			SubscriptionHandler.cpp\
-			watchdog.cpp\
+			SubscriptionHandler.cpp \
+			watchdog.cpp \
 			system.cpp
 
 

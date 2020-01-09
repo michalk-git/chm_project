@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     QS_SIG_DICTIONARY(SUBSCRIBE_ACKNOWLEDGE_SIG,   (void *)0);
     QS_SIG_DICTIONARY(UNSUBSCRIBE_ACKNOWLEDGE_SIG,   (void *)0);
 	QS_SIG_DICTIONARY(REQUEST_UPDATE_SIG,   (void *)0);
-
+	QS_SIG_DICTIONARY(TIMEOUT_SIG, (void*)0);
     // pause execution of the test and wait for the test script to continue
     QS_TEST_PAUSE();
 
