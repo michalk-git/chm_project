@@ -17,7 +17,7 @@ class SubscriptionHandler {
 	// check the system id (ie index) of a user is in legal bounds
 	bool IndexInRange(int index)const;
 public:
-	SubscriptionHandler() = default;
+	SubscriptionHandler() :members_num(0) {};
 
 
 	// returns index of first empty cell in members array unless the members array is full or the id is already in the system

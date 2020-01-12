@@ -103,7 +103,7 @@ void QF::onCleanup(void) {  // cleanup callback
 }
 //............................................................................
 void QF_onClockTick(void) {
-    QF::TICK_X(0U, &DPP::l_clock_tick); // process time events at rate 0
+    QF::TICK_X(0U, &Core_Health::l_clock_tick); // process time events at rate 0
 
     QS_RX_INPUT(); // handle the QS-RX input
     QS_OUTPUT();   // handle the QS output

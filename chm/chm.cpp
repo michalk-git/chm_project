@@ -122,7 +122,7 @@ namespace Core_Health {
 
 		case SUBSCRIBE_SIG: {
 			int user_id = (int)(Q_EVT_CAST(SubscribeUserEvt)->id);
-			int AO_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);
+			int ao_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);
 			int new_sys_id = INVALID_ID;
 
 			// subscribe the user (if there is free space)
@@ -131,7 +131,7 @@ namespace Core_Health {
 				//if we succeded in registering the new user we need notify the associated AO_Member
 				MemberEvt* member_evt = Q_NEW(MemberEvt, SUBSCRIBE_ACKNOWLEDGE_SIG);
 				member_evt->member_num = new_sys_id;
-				AO_Member[AO_index]->POST(member_evt,this);
+				AO_Member[ao_index]->POST(member_evt,this);
 			}
 			else { PRINT_LOG("Subscribing didn't succeed\n"); }
 
@@ -143,13 +143,13 @@ namespace Core_Health {
 
 			bool unsubscribed_successfully = false;
 			// find the system id (ie index in members array) of the member to unsubscribe
-			int AO_index = (Q_EVT_CAST(UnSubscribeUserEvt)->sender_id);
+			int ao_index = (Q_EVT_CAST(UnSubscribeUserEvt)->sender_id);
 			int sys_id = (Q_EVT_CAST(UnSubscribeUserEvt)->member_num);
 			unsubscribed_successfully = subscription_handler.UnSubscribeUser(sys_id);
 			if (unsubscribed_successfully) {
 				//if we succeded in unsubscribing we need notify the associated AO_Member
 				QP::QEvt* member_evt = Q_NEW(QP::QEvt, UNSUBSCRIBE_ACKNOWLEDGE_SIG);
-				AO_Member[AO_index]->POST(member_evt, this);
+				AO_Member[ao_index]->POST(member_evt, this);
 			}
 			else { PRINT_LOG("Unsubscribing didn't succeed\n"); }
 

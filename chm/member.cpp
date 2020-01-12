@@ -1,6 +1,6 @@
 
 #include "system.h"
-#include "test.h"
+#include "MemberTest.h"
 using namespace std;
 Q_DEFINE_THIS_FILE
 
@@ -82,7 +82,7 @@ namespace Core_Health {
 	Member Member::inst[N_MEMBER];
 	//${AOs::Member::Member} .......................................................
 	Member::Member()
-		: QActive(&initial), num_deactivated_cycles(0), system_id(-1){};
+		: QActive(&initial), num_deactivated_cycles(0), system_id(-1), test(NULL){};
 		
 	
 
