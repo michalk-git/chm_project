@@ -1,6 +1,7 @@
 #include "watchdog.h"
 #include <iostream>
 #include <chrono>
+#include <thread>
 #include <ctime>
 
 
@@ -33,7 +34,7 @@ void WatchDog::WatchDogCountDown() {
 		//check if the watchdog's counter reached zero; if so, terminate
 		watchdog_reached_zero = (watchdog_instance.counter.count() <= 0);
 		if (watchdog_reached_zero) {
-			PRINT_LOG("WatchDog reached zero- terminating...\n");
+			printf("WatchDog reached zero- terminating...\n");
 			std::terminate();
 		}
 
@@ -46,7 +47,7 @@ void WatchDog::WatchDogCountDown() {
 		/*used for debugging:*****************************************************************************************************************! TO BE REMOVED!*/
 		curr_counter_value = watchdog_instance.GetCounterDurationInSecs().count();
 		if (curr_counter_value != last_counter_value) {
-			cout << "wd = " << curr_counter_value << endl;
+			printf("wd = %d\n",curr_counter_value);
 			last_counter_value = curr_counter_value;
 		}
 		/************************************************************************/

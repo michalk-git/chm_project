@@ -20,10 +20,12 @@ private:
 	int system_id;
 
 	// used for testing 
-	SubscriptionCmdOrWait cmd_handler;
-
+	MemberTest* test;
 
 	int num_deactivated_cycles;
+
+
+	///////////////////
 public:
 	Member();
 
@@ -36,7 +38,10 @@ protected:
 } // namespace Core_Health
 //$enddecl${AOs::Member} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
 namespace Core_Health {
+
+
 
 // Local objects -------------------------------------------------------------
 static Member l_Member[N_MEMBER];   // storage for all Members
@@ -63,7 +68,10 @@ QP::QActive * const AO_Member[N_MEMBER] = { // "opaque" pointers to Member AO
 };
 
 
-
+// helper function to provide the ID of Member "me"
+inline uint8_t MEMBER_ID(Member const* const me) {
+	return static_cast<uint8_t>(me - &Member::inst[0]);
+}
 
 } // namespace Core_Health
 //$enddef${AOs::AO_Member[N_Member]} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,7 +82,7 @@ namespace Core_Health {
 	Member Member::inst[N_MEMBER];
 	//${AOs::Member::Member} .......................................................
 	Member::Member()
-		: QActive(&initial), num_deactivated_cycles(0),system_id(-1) {};
+		: QActive(&initial), num_deactivated_cycles(0), system_id(-1){};
 		
 	
 
@@ -84,21 +92,20 @@ namespace Core_Health {
 
 		// handle initialization event 
 		if (e->sig == INIT_SIG) {
-			cmd_handler = (Q_EVT_CAST(InitializationEvt)->cmd_or_wait);
+			test = (Q_EVT_CAST(InitializationEvt)->commands_test);
+
+			// subscribe to 'START_TESTS_SIG' (which when received signals the start of running the command array of the member AO)
+			subscribe(START_TESTS_SIG);
+
 		}
-
-
-		// subscribe to 'START_TESTS_SIG' 
-		subscribe(START_TESTS_SIG);
 		return tran(&active);
 	}
 
 	//${AOs::Member::SM::active} ................................................
 	Q_STATE_DEF(Member, active) {
-
-
 		QP::QState status_;
 		switch (e->sig) {
+
 		case START_TESTS_SIG: {
 			// when the member AO receives a 'START_TESTS_SIG' , it will prompt a subscription to the signal TICK_SIG
 			subscribe(TICK_SIG);
@@ -106,14 +113,18 @@ namespace Core_Health {
 			break;
 		}
 		case TICK_SIG: {
-			cmd_handler();
+			// call the command handler each time the member AO receives a 'TICK_SIG' signal
+			test->ExecuteCurrentCommand(MEMBER_ID(this));
 			status_ = Q_RET_HANDLED;
 			break;
 		}
-
 		case MEMBER_SUBSCRIBE_SIG: {
-			((QP::QEvt*)e)->sig = SUBSCRIBE_SIG;
-			AO_HealthMonitor->postFIFO((SubscribeUserEvt*)e, this);
+			if (system_id == -1) {
+				// when the member AO receives a 'MEMBER_SUBSCRIBE_SIG' 
+				((QP::QEvt*)e)->sig = SUBSCRIBE_SIG;
+				AO_HealthMonitor->POST((SubscribeUserEvt*)e, this);
+			}
+			else PRINT_LOG("Subscribing didn't succeed\n");
 			status_ = Q_RET_HANDLED;
 			break;
 		}
@@ -121,18 +132,17 @@ namespace Core_Health {
 			UnSubscribeUserEvt* unsub = Q_NEW(UnSubscribeUserEvt, UNSUBSCRIBE_SIG);
 			unsub->member_num = system_id;
 			unsub->sender_id = (Q_EVT_CAST(UnSubscribeUserEvt)->sender_id);
-			AO_HealthMonitor->postFIFO(unsub, this);
+			AO_HealthMonitor->POST(unsub, this);
 			status_ = Q_RET_HANDLED;
 			break;
 		}
-
 		case REQUEST_UPDATE_SIG: {
 			//if a member AO recevied a REQUEST_UPDATE_SIG it needs to post an ALIVE_SIG to the HealthMonitor active object unless it has been deactivated
 			if (num_deactivated_cycles == 0) {
 				MemberEvt* alive_evt = Q_NEW(MemberEvt, ALIVE_SIG);
 				alive_evt->member_num = system_id;
-				AO_HealthMonitor->postFIFO(alive_evt, this);
-				PRINT_LOG("member %d has sent ALIVE signal\n",(int)system_id);
+				AO_HealthMonitor->POST(alive_evt, this);
+				PRINT_LOG("Member %d has sent ALIVE signal\n",(int)system_id);
 			}
 			else --num_deactivated_cycles;
 			status_ = Q_RET_HANDLED;
@@ -144,14 +154,14 @@ namespace Core_Health {
 			//all users who wish to subscribe to health monitor system will subscribe to the REQUEST_UPDATE_SIG signal
 			subscribe(REQUEST_UPDATE_SIG);
 			system_id = (Q_EVT_CAST(MemberEvt)->member_num);
-			PRINT_LOG("member %d has subscribed\n", system_id);
+			PRINT_LOG("Member %d has subscribed\n", system_id);
 			status_ = Q_RET_HANDLED;
 			break;
 		}
 		case UNSUBSCRIBE_ACKNOWLEDGE_SIG: {
 			//users who wish to unsubscribe will stop receiving REQUEST_UPDATE_SIG signal
 			 unsubscribe(REQUEST_UPDATE_SIG);
-			 PRINT_LOG("member %d has unsubscribed\n", system_id);
+			 PRINT_LOG("Member %d has unsubscribed\n", system_id);
 			 system_id = -1;
 			 num_deactivated_cycles = 0;
 			 status_ = Q_RET_HANDLED;
@@ -159,7 +169,10 @@ namespace Core_Health {
 		}
 		//used for testing purposes
 		case DEACTIVATE_SIG: {
-			num_deactivated_cycles = (Q_EVT_CAST(DeactivationEvt)->period_num);
+			if (system_id != -1) {
+				num_deactivated_cycles = (Q_EVT_CAST(DeactivationEvt)->period_num);
+				PRINT_LOG("Member %d is deactivated for %d cycles\n ", system_id, num_deactivated_cycles);
+			}
 			status_ = Q_RET_HANDLED;
 			break;
 		}
@@ -177,4 +190,5 @@ namespace Core_Health {
 		}
 		return status_;
 	}
+
 }

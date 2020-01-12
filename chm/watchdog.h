@@ -2,7 +2,7 @@
 #ifndef WD_CPP_
 #define WD_CPP_
 
-#include <windows.h>
+
 #include <thread>
 #include "system.h"
 #include "singleton.h"
@@ -26,7 +26,9 @@ class WatchDog {
 	WatchDog() : counter(CHMConfig_t::T_WATCHDOG_RESET_SEC), is_running(false) {};
 	
 public:
-	
+	~WatchDog(){
+		Stop();
+	}
 	void Start(int initial_value_in_secs) {
 		if(is_running == false) {
 			is_running = true;
@@ -37,8 +39,9 @@ public:
 	
 	void Stop(){
 		if(is_running == true) {
-			watchdog_thread.join();
 			is_running = false;
+			watchdog_thread.join();
+			
 		}
 	}
 

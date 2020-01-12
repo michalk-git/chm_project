@@ -3,10 +3,10 @@
 #define Core_Health_h
 #include "qpcpp.h"
 #include "bsp.h"
-#include <stdio.h>
 #include "singleton.h"
 #include "CoreDebug.h"
-#define UNIDENTIFIED_ID (-1)
+
+
 
 
 #ifndef _DEBUG 
@@ -15,6 +15,7 @@
 #define PRINT_LOG(x,...) do {singleton<CoreDebug>::getInstance().CorePrintf(x,##__VA_ARGS__);} while (0)
 #endif
 
+#define UNIDENTIFIED_ID (-1)
 
 namespace Core_Health {
 	QP::QTimeEvtCtr ConvertSecondsToTicks(unsigned int seconds);
@@ -31,11 +32,14 @@ enum Core_HealthSignals {
 	TERMINATE_SIG,                //signal that terminates the program
 	TICK_SIG,
 	START_TESTS_SIG,
+	TEST_DONE_SIG,
+	STOP_TESTS_SIG,
     MAX_PUB_SIG,                  // the last published signal
 	 
 	MEMBER_SUBSCRIBE_SIG,
 	MEMBER_UNSUBSCRIBE_SIG,
-
+	MEMBER_FINISHED_TEST_SIG,
+	FINISHED_TEST_SIG,
     INIT_SIG,         
 	DEACTIVATE_SIG,               //signal to an Member AO to elicit malfunctioning behaviour (no AlIVE signals for a specified amount of periods)
 	SUBSCRIBE_SIG,                //each member can subscribe by SUBSCRIBE_SIG
@@ -68,7 +72,7 @@ namespace Core_Health {
 
 class MemberEvt : public QP::QEvt {
 public:
-	uint8_t member_num;
+	int member_num;
 };
 class SubscribeUserEvt : public QP::QEvt {
 public:
@@ -86,6 +90,8 @@ class DeactivationEvt : public MemberEvt {
 public:
 	uint8_t period_num;
 };
+
+
 
 } // namespace Core_Health
 

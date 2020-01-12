@@ -1,103 +1,47 @@
 #pragma once
+
 #include <chrono>
-#include "system.h"
-using namespace std::chrono;
-using namespace Core_Health;
+#include "Command.h"
+#include "MemberTest.h"
 
-
-class Command {
+class TestsHandler {
+	MemberTest* tests_vec;
+	int curr_test_index;
+	int tests_num;
 public:
-	int time;
-	Command(int cmd_time) : time(cmd_time) {};
-	virtual ~Command() = default;
-	virtual void ExecuteCmd() {};
-};
-
-class UnSubscribe : public Command {
-	int sys_id;
-public:
-	UnSubscribe(int cmd_time, int member_index) : Command(cmd_time),sys_id(member_index) {};
-	virtual void ExecuteCmd() override{
-		UnSubscribeUserEvt* user_evt = Q_NEW(UnSubscribeUserEvt, MEMBER_UNSUBSCRIBE_SIG);    //deleted index assignment without changing interfaces
-		user_evt->sender_id = sys_id;
-		AO_Member[sys_id]->postFIFO(user_evt);
-
+	TestsHandler() :tests_vec(NULL), curr_test_index(0), tests_num(0) {};
+	TestsHandler(MemberTest* tests, int tests_len): tests_vec(tests), curr_test_index(0), tests_num(tests_len) {};
+	void ExecuteTest(int ao_index) {
+		// check if there aren't any tests left to run
+		if (curr_test_index == tests_num) return;
+		// if there are, run the current test
+		tests_vec[curr_test_index].ExecuteCurrentCommand(ao_index);
 	}
-};
-
-class Subscribe : public Command {
-	int sys_id;
-	int user_id;
-public:
-	Subscribe(int cmd_time, int new_user_id, int member_index) : Command(cmd_time), user_id(new_user_id), sys_id(member_index) {};
-	virtual void ExecuteCmd() override {
-		//create an event with the new user's id and post it to the appropriate Member Ao
-		SubscribeUserEvt* user_evt = Q_NEW(SubscribeUserEvt, MEMBER_SUBSCRIBE_SIG);
-		user_evt->id = user_id;
-		user_evt->sender_id = sys_id;
-		AO_Member[sys_id]->postFIFO(user_evt);
-	}
-};
-
-class Deactivate : public Command {
-public:
-	int cycle_num;
-	int index;
-
-	Deactivate( int cmd_time, int deactivation_cycles, int member_index) : Command(cmd_time), cycle_num(deactivation_cycles), index(member_index) {};
-	virtual void ExecuteCmd() override {
-		// create new event to notify the appropriate member and post it
-		DeactivationEvt* evt = Q_NEW(DeactivationEvt, DEACTIVATE_SIG);
-		evt->period_num = cycle_num;
-		AO_Member[index]->postFIFO(evt);
-		PRINT_LOG("Member %d is deactivated for %d cycles\n ", index, cycle_num);
-		
-	}
-};
-
-class SubscriptionCmdOrWait {
-	Command** subscribe_cmd_vec;
-	int subscribe_cmd_vec_len;
-	int curr_index;
-	system_clock::time_point initial_time;
-
-	void CallNextCmd() {
-		subscribe_cmd_vec[curr_index++]->ExecuteCmd();
-	}
-
-public:
-	SubscriptionCmdOrWait() : subscribe_cmd_vec(NULL), subscribe_cmd_vec_len(0), curr_index(0), initial_time(system_clock::now()) {};
-	SubscriptionCmdOrWait(Command** command_vec, int length) {
-		subscribe_cmd_vec = command_vec;
-		curr_index = 0;
-		initial_time = system_clock::now();
-		subscribe_cmd_vec_len = length;
-	}
-	void operator () () {
-		
-		system_clock::time_point curr_time = system_clock::now();
-		
-		// find the duration of time since initialization of class in duration
-		duration<int> seconds = duration_cast<std::chrono::seconds>(curr_time - initial_time);
-		// check if we reached end of tests
-		if (curr_index == (subscribe_cmd_vec_len )) {  return; }
-		// check if we need to run a new command yet
-		else if (seconds.count() >= (subscribe_cmd_vec[curr_index]->time)) {
-			CallNextCmd();
-			
-			
-			
+	void StartNewTest(system_clock::time_point test_start_time) {
+		// check if there aren't any tests left to run
+		if (curr_test_index == tests_num) return;
+		else {
+			curr_test_index++;
+			tests_vec[curr_test_index].UpdateTestStartTime(test_start_time);
 		}
-		
-		
 	}
 };
-
 
 
 
 class InitializationEvt : public QP::QEvt {
 public:
-	SubscriptionCmdOrWait cmd_or_wait;
+	MemberTest* commands_test;
+
 };
 
+
+
+
+class InitSysEvt : public QP::QEvt {
+public:
+	char* tests_name;
+	int test_num;
+
+
+};
