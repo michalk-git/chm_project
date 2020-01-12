@@ -1,13 +1,12 @@
 
 
-#include "bsp.h"
-#include "watchdog.h"
-#include <iostream>
-#include "test.h"
-#include "CoreDebug.h"
-#include "MemberTest.h"
 
-//#define COMMAND_NUM 3
+#include "MemberTest.h"
+#include "watchdog.h"
+#include "CoreDebug.h"
+
+
+
 #define TESTS_NUM 18
 using namespace Core_Health;
 
@@ -247,14 +246,13 @@ int main(int argc, char* argv[]) {
 	for (uint8_t n = 0U; n < N_MEMBER; ++n) {
 		// create initialization event for AO_Member active object associated with INIT_SIG signal
 		InitializationEvt* init_evt = Q_NEW(InitializationEvt, INIT_SIG);
-		init_evt->commands_test = &tests[n][13];
+		init_evt->commands_test = &tests[n][11];
 		AO_Member[n]->start((uint8_t)(n + 1U),
 			memberQueueSto[n], Q_DIM(memberQueueSto[n]),
 			(void*)0, 0U, init_evt);
 	}
 
 	// create initialization event for AO_HealthMonitor
-	InitSysEvt* init_sys_evt = Q_NEW(InitSysEvt, INIT_SIG);
 	AO_HealthMonitor->start((uint8_t)(N_MEMBER + 1U),
 		chmQueueSto, Q_DIM(chmQueueSto),
 		(void*)0, 0U);

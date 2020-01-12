@@ -44,3 +44,8 @@ public:
 	}
 
 };
+class InitializationEvt : public QP::QEvt {
+public:
+	MemberTest* commands_test;
+
+};

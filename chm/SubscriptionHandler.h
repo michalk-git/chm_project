@@ -14,12 +14,14 @@ class SubscriptionHandler {
 
 
 
-	// returns index of first empty cell in members array unless the members array is full or the id is already in the system
-	int FindFreeSpace(int id, int* return_index)const;
-
+	// check the system id (ie index) of a user is in legal bounds
 	bool IndexInRange(int index)const;
 public:
 	SubscriptionHandler() = default;
+
+
+	// returns index of first empty cell in members array unless the members array is full or the id is already in the system
+	int FindFreeSpace(int id, int* return_index)const;
 
 	// checks if the id = 'user_id' is new to the system and if there is free space in the system; If so, registers the new user and returns the index of the 
 	// members array associated to the new user. If the user was already in the system or the system was full, returns -1
@@ -37,6 +39,7 @@ public:
 	// sets the 'keep_alive_received' parameter to true for the user associated with system id = 'sys_id'
 	void UpdateAliveStatus(int sys_id);
 
+	// return the number of subscribed users
 	int GetMembersNum()const;
 
 

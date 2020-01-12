@@ -17,6 +17,9 @@
 
 #define UNIDENTIFIED_ID (-1)
 
+
+
+
 namespace Core_Health {
 	QP::QTimeEvtCtr ConvertSecondsToTicks(unsigned int seconds);
 
@@ -28,27 +31,23 @@ namespace Core_Health {
 
 enum Core_HealthSignals {
     TIMEOUT_SIG = QP::Q_USER_SIG, // time event timeout
-	REQUEST_UPDATE_SIG,           //AO_CHM publishes REQUEST_SIG to itself and each subscribed member
+	REQUEST_UPDATE_SIG,           //AO_HealthMonitor publishes REQUEST_SIG to each subscribed member
 	TERMINATE_SIG,                //signal that terminates the program
-	TICK_SIG,
-	START_TESTS_SIG,
-	TEST_DONE_SIG,
-	STOP_TESTS_SIG,
+	TICK_SIG,                     // 
+	START_TESTS_SIG,              // AO_HealthMonitor publishes 'START_TESTS_SIG' to signfy the start of the Member's tests
     MAX_PUB_SIG,                  // the last published signal
 	 
-	MEMBER_SUBSCRIBE_SIG,
-	MEMBER_UNSUBSCRIBE_SIG,
-	MEMBER_FINISHED_TEST_SIG,
-	FINISHED_TEST_SIG,
-    INIT_SIG,         
+	MEMBER_SUBSCRIBE_SIG,         //each member can subscribe by MEMBER_SUBSCRIBE_SIG
+	MEMBER_UNSUBSCRIBE_SIG,       //each member can unsubscribe by MEMBER_UNSUBSCRIBE_SIG 
+    INIT_SIG,                     // initialization signal of the Member active object
 	DEACTIVATE_SIG,               //signal to an Member AO to elicit malfunctioning behaviour (no AlIVE signals for a specified amount of periods)
-	SUBSCRIBE_SIG,                //each member can subscribe by SUBSCRIBE_SIG
-	UNSUBSCRIBE_SIG,              //each member can unsubscribe by UNSUBSCRIBE_SIG
-	SUBSCRIBE_ACKNOWLEDGE_SIG,         //each member can subscribe by SUBSCRIBE_SIG
-	UNSUBSCRIBE_ACKNOWLEDGE_SIG,       //each member can unsubscribe by UNSUBSCRIBE_SIG
-	TIMER_KICK_SIG,                     //AO_CHM sends itself a KICK_SIG to signal the time to (potentially) kick the watchdog 
-	TIMER_UPDATE_SIG,                   // AO_CHM sends itself an UPDATE_SIG to signal the time to request an update from the subscribed members
-	ALIVE_SIG,                    //each subscribed member that receives an UPDATE_SIG posts an ALIVE_SIG to AO_CHM in response
+	SUBSCRIBE_SIG,                // signal for  AO_HealthMonitor to subscribe new user if possible
+	UNSUBSCRIBE_SIG,              // signal for  AO_HealthMonitor to unsubscribe user 
+	SUBSCRIBE_ACKNOWLEDGE_SIG,    // AO_HealthMonitor sends the requesting Member an acknowledgment if subscribing succeded
+	UNSUBSCRIBE_ACKNOWLEDGE_SIG,  // AO_HealthMonitor sends the requesting Member an acknowledgment if unsubscribing succeded
+	TIMER_KICK_SIG,               // AO_HealthMonitor recieves a TIMER_KICK_SIG to signal the time to (potentially) kick the watchdog 
+	TIMER_UPDATE_SIG,             // AO_HealthMonitor recieves a TIMER_UPDATE_SIG to signal the time to request an update from the subscribed members
+	ALIVE_SIG,                    //each subscribed member that receives an TIMER_UPDATE_SIG posts an ALIVE_SIG to AO_HealthMonitor in response
     MAX_SIG                       // the last signal
 };
 
@@ -70,30 +69,31 @@ struct User {
 };
 namespace Core_Health {
 
-class MemberEvt : public QP::QEvt {
-public:
-	int member_num;
-};
-class SubscribeUserEvt : public QP::QEvt {
-public:
-	int sender_id;
-	int id;
-};
+	class MemberEvt : public QP::QEvt {
+	public:
+		int member_num;
+	};
+	class SubscribeUserEvt : public QP::QEvt {
+	public:
+		int sender_id;
+		int id;
+	};
 
-class UnSubscribeUserEvt : public QP::QEvt {
-public:
-	int sender_id;
-	int member_num;
-};
+	class UnSubscribeUserEvt : public QP::QEvt {
+	public:
+		int sender_id;
+		int member_num;
+	};
 
-class DeactivationEvt : public MemberEvt {
-public:
-	uint8_t period_num;
-};
+	class DeactivationEvt : public MemberEvt {
+	public:
+		uint8_t period_num;
+	};
 
 
 
-} // namespace Core_Health
+}; // namespace Core_Health
+
 
 
 // number of members

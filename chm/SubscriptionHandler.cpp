@@ -16,7 +16,7 @@ int SubscriptionHandler::FindFreeSpace(int id, int* return_index)const {
 			found = true;
 		}
 		// if we found the id already in the members array, return USER_IN_SYS
-		if (members[i].id == id) return USER_IN_SYS;
+		if (members[i].id == id) { return USER_IN_SYS; }
 
 	}
 	return found_free_cell;
@@ -32,7 +32,7 @@ int SubscriptionHandler::SubscribeUser(int user_id) {
 		PRINT_LOG("User %d is already in the system\n", user_id);
 		return INVALID_ID;
 	}
-	else if(status == SYSTEM_FULL) PRINT_LOG("System full\n");  
+	else if (status == SYSTEM_FULL) { PRINT_LOG("System full\n"); }
 	else {	
 		//if we found an index in the members array not associated with another user, register the new subscriber and increase members count
 		members[empty_cell_index].id = user_id;
@@ -45,7 +45,7 @@ int SubscriptionHandler::SubscribeUser(int user_id) {
 
 
 bool SubscriptionHandler::UnSubscribeUser(int index) {
-	if (IndexInRange(index) == false) return false;
+	if (IndexInRange(index) == false) { return false; }
 	// update subscribers array to show that a user has unsubscribed and decrease members count
 	if (members[index].id != UNIDENTIFIED_ID) {
 		members[index].id = UNIDENTIFIED_ID;
@@ -65,7 +65,7 @@ void SubscriptionHandler::LogUnResponsiveUsersAndReset() {
 	for (int i = 0; i < N_MEMBER; ++i) {
 		// A subscriber is unresponsive if he's registered and hasn't sent an ALIVE signal
 		subscriber_is_unresponsive = ((members[i].id != UNIDENTIFIED_ID) && (members[i].keep_alive_received == false));
-		if (subscriber_is_unresponsive) PRINT_LOG("Watchdog wasn't kicked because member id %d didn't send ALIVE signal\n", members[i].id); 
+		if (subscriber_is_unresponsive) { PRINT_LOG("Watchdog wasn't kicked because member id %d didn't send ALIVE signal\n", members[i].id); }
 		// reset the 'keep_alive_received' parameter for all users 
 		members[i].keep_alive_received = false;
 	}
@@ -76,20 +76,20 @@ bool SubscriptionHandler::AreAllMembersResponsive() {
 	// For each member check if there has been an ALIVE signal in the current cycle
 	for (int i = 0; i < N_MEMBER; ++i) {
 		subscriber_is_unresponsive = ((members[i].id != UNIDENTIFIED_ID) && (members[i].keep_alive_received == false));
-		if (subscriber_is_unresponsive) return false;
+		if (subscriber_is_unresponsive) { return false; }
 	}
 	return true;
 }
 
 void SubscriptionHandler::UpdateAliveStatus(int sys_id) {
-	if(IndexInRange(sys_id) == false) return;
+	if (IndexInRange(sys_id) == false) { return; }
 	// update the members array in the appropriate index
 	members[sys_id].keep_alive_received = true;
 	
 }
 
 bool SubscriptionHandler::IndexInRange(int index)const {
-	if ((index < 0) || (index >= N_MEMBER)) return false;
+	if ((index < 0) || (index >= N_MEMBER)) { return false; }
 	return true;
 }
 

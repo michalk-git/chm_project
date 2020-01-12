@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-class CoreDebug
-{
+class CoreDebug{
 public:
 	void CorePrintf(const char* format,...) {
 		va_list arglist;

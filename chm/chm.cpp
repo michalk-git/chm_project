@@ -56,12 +56,12 @@ namespace Core_Health {
 
 		//start the watchdog
 		watchdog_instance.Start(CHMConfig_t::T_WATCHDOG_RESET_SEC);
-	};
+	}
 
 
 	Q_STATE_DEF(HealthMonitor, initial) {
 
-
+		(void)e;
 		QS_FUN_DICTIONARY(&active);
 		QS_OBJ_DICTIONARY(&timeEvt_request_update);
 		QS_OBJ_DICTIONARY(&timeEvt_kick);
@@ -122,7 +122,7 @@ namespace Core_Health {
 
 		case SUBSCRIBE_SIG: {
 			int user_id = (int)(Q_EVT_CAST(SubscribeUserEvt)->id);
-			int AO_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);;
+			int AO_index = (int)(Q_EVT_CAST(SubscribeUserEvt)->sender_id);
 			int new_sys_id = INVALID_ID;
 
 			// subscribe the user (if there is free space)
@@ -133,7 +133,7 @@ namespace Core_Health {
 				member_evt->member_num = new_sys_id;
 				AO_Member[AO_index]->POST(member_evt,this);
 			}
-			else PRINT_LOG("Subscribing didn't succeed\n");
+			else { PRINT_LOG("Subscribing didn't succeed\n"); }
 
 			status_ = Q_RET_HANDLED;
 			break;
@@ -151,7 +151,7 @@ namespace Core_Health {
 				QP::QEvt* member_evt = Q_NEW(QP::QEvt, UNSUBSCRIBE_ACKNOWLEDGE_SIG);
 				AO_Member[AO_index]->POST(member_evt, this);
 			}
-			else PRINT_LOG("Unsubscribing didn't succeed\n");
+			else { PRINT_LOG("Unsubscribing didn't succeed\n"); }
 
 			status_ = Q_RET_HANDLED;
 			break;
